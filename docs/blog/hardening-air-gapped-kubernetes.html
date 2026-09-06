@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#181a1e" />
+
+  <title>A Practical Checklist for Hardening Air-Gapped Kubernetes — Sarthak Kulshrestha</title>
+  <meta name="description" content="No internet access doesn't mean no attack surface. A working checklist for image supply chains, network policy, node hardening, and patching in air-gapped Kubernetes clusters." />
+  <meta name="author" content="Sarthak Kulshrestha" />
+
+  <link rel="canonical" href="https://sarthak044.github.io/sarthak-kul/blog/hardening-air-gapped-kubernetes.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Sarthak Kulshrestha" />
+  <meta property="og:title" content="A Practical Checklist for Hardening Air-Gapped Kubernetes" />
+  <meta property="og:description" content="No internet access doesn't mean no attack surface. A working checklist for image supply chains, network policy, node hardening, and patching." />
+  <meta property="og:image" content="../assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+  <meta property="og:url" content="https://sarthak044.github.io/sarthak-kul/blog/hardening-air-gapped-kubernetes.html" />
+  <meta property="article:published_time" content="2026-07-18" />
+  <meta property="article:author" content="Sarthak Kulshrestha" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A Practical Checklist for Hardening Air-Gapped Kubernetes" />
+  <meta name="twitter:description" content="Image supply chains, network policy, node hardening, and patching without internet access." />
+  <meta name="twitter:image" content="../assets/img/og-image.png" />
+  <meta name="twitter:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=Share+Tech+Mono&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "A Practical Checklist for Hardening Air-Gapped Kubernetes",
+    "description": "No internet access doesn't mean no attack surface. A working checklist for image supply chains, network policy, node hardening, and patching.",
+    "datePublished": "2026-07-18",
+    "author": { "@type": "Person", "name": "Sarthak Kulshrestha", "url": "https://sarthak044.github.io/sarthak-kul/" },
+    "publisher": { "@type": "Person", "name": "Sarthak Kulshrestha" },
+    "mainEntityOfPage": "https://sarthak044.github.io/sarthak-kul/blog/hardening-air-gapped-kubernetes.html",
+    "url": "https://sarthak044.github.io/sarthak-kul/blog/hardening-air-gapped-kubernetes.html"
+  }
+  </script>
+</head>
+<body class="calm">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hud" id="top">
+    <div class="hud-inner">
+      <a class="sigil" href="../index.html" aria-label="Sarthak Kulshrestha — hub">
+        <svg class="sigil-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 7 L16 2 L28 7 L28 21 L16 30 L4 21 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M12 11 H21 M12 11 V16 H20 M12 21 H21 M20 16 V21" fill="none" stroke="currentColor" stroke-width="2.4"/>
+        </svg>
+        <span class="sigil-text">SK<b>//</b>SYS</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hud-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="hud-nav" class="hud-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../experience.html">Experience</a></li>
+          <li><a href="../skills.html">Skills</a></li>
+          <li><a href="../certifications.html">Certs</a></li>
+          <li><a href="../education.html">Education</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../blog.html" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+      <p class="hud-readout" aria-hidden="true"><span class="hud-dot"></span> LINK OK <span class="hud-clock" data-clock>--:--</span></p>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="read">
+      <header class="post-header">
+        <p class="calm-kicker">Field notes</p>
+        <h1>A Practical Checklist for Hardening Air-Gapped Kubernetes</h1>
+        <p class="post-meta">
+          <time datetime="2026-07-18">July 18, 2026</time>
+          <span class="dot">&middot;</span> 6 min read
+          <span class="dot">&middot;</span> Sarthak Kulshrestha
+          <span class="dot">&middot;</span> <span class="post-meta-cat">Technical</span>
+        </p>
+        <ul class="post-tags">
+          <li>Kubernetes</li>
+          <li>Security</li>
+        </ul>
+      </header>
+
+      <div class="post-body">
+        <p>Air-gapped clusters have a reputation for being the "safe" ones. No route to the public internet, no exposure to opportunistic scanning, no exfiltration path — what's left to worry about? In practice, quite a lot. Air-gapping removes one class of risk and quietly introduces a few others: stale images, unpatched CVEs sitting for months because nobody's pipeline reaches them, and a false sense of security that makes teams skip controls they'd never skip on a public cloud cluster.</p>
+
+        <p>This is the checklist I actually use when standing up or auditing a cluster with no direct internet route. It's not exhaustive, but it covers the places I've seen air-gapped environments quietly drift out of compliance.</p>
+
+        <h2>1. Treat the image supply chain as the perimeter</h2>
+        <p>With no ingress from the internet, your container images become the primary way anything new enters the environment. Mirror upstream registries into an internal registry (Nexus and JFrog both work well here), and scan every image with Trivy <em>before</em> it gets mirrored — not after. Once an image is inside an air-gapped registry, it tends to stay trusted by default, so the scanning gate has to sit at the border, not somewhere convenient downstream.</p>
+        <p>Sign images on the way in if you can. It's a small extra step that pays for itself the first time someone asks "how do we know this image wasn't tampered with between the vendor and our registry?"</p>
+
+        <h2>2. Default-deny network policy, even without an internet path</h2>
+        <p>It's tempting to relax <code>NetworkPolicy</code> rules in an air-gapped cluster on the logic that there's "nowhere for traffic to go anyway." That logic breaks the moment a workload is compromised and starts moving laterally between namespaces instead of outward. Default-deny egress and explicit allow-lists are just as relevant inside a sealed network as outside one:</p>
+        <pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-egress
+  namespace: production
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress: []</code></pre>
+        <p>Layer HA ingress (Traefik or Kong Gateway OSS both handle this well) on top so that legitimate traffic still has a clear, auditable path in and out of each namespace.</p>
+
+        <h2>3. Harden the node OS and the container runtime, not just the app</h2>
+        <p>CIS benchmarks exist for a reason, and air-gapped nodes are not exempt from them. Non-root execution, read-only root filesystems, and a minimized base image cut down the blast radius of anything that does get through. This is also where multistage Docker builds earn their keep — ship the compiled artifact, not the toolchain that built it.</p>
+
+        <h2>4. Plan your patch cadence before you need it</h2>
+        <p>Without live internet access, patching is a scheduled event, not a background process. Mirror upstream patch repositories on a fixed cadence, build golden images against them, and roll nodes rather than patching in place. The teams that struggle here are the ones that treat air-gapped patching as an exception process instead of a routine one — by the time a CVE is urgent, you want the mirror-and-rebuild pipeline to already be boring.</p>
+
+        <h2>5. Observability has to be self-hosted too</h2>
+        <p>Every SaaS observability agent you can't use is one more reason to invest properly in the self-hosted stack: Prometheus for metrics, Grafana for dashboards, Loki for logs, Tempo for traces. None of it should quietly try to phone home — audit outbound configuration on these tools specifically, since many ship with telemetry defaults aimed at a connected world.</p>
+
+        <h2>Closing thought</h2>
+        <p>Air-gapping changes your threat model — it doesn't retire it. The checklist above isn't about distrust of the environment; it's about not letting the absence of one risk (external exposure) quietly excuse the rest (supply chain integrity, lateral movement, patch debt, blind observability). Treat "air-gapped" as a constraint to design around, not a control you get for free.</p>
+      </div>
+
+      <footer class="post-footer">
+        <nav class="post-nav" aria-label="More posts">
+          <div class="post-nav-next">
+            <span>Next</span>
+            <a href="gitops-in-regulated-environments.html">GitOps in Regulated Environments: What Actually Changes →</a>
+          </div>
+        </nav>
+        <a class="back-to-blog" href="../blog.html">&larr; Back to Blog</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="dock">
+    <div class="dock-inner">
+      <p class="dock-copy">&copy; <span data-year>2026</span> Sarthak Kulshrestha &middot; field notes</p>
+      <nav class="dock-links" aria-label="Profiles and résumé">
+        <a href="../assets/sarthak-kulshrestha-resume.pdf" download>Résumé</a>
+        <a href="https://www.linkedin.com/in/sarthak-kul/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/Sarthak044" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://medium.com/@shinobishuuz" target="_blank" rel="noopener noreferrer">Medium</a>
+      </nav>
+      <a class="dock-top" href="#top">&#9650; TOP</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#181a1e" />
+
+  <title>What Certifications Don't Teach You About Running Kubernetes in Production — Sarthak Kulshrestha</title>
+  <meta name="description" content="CKA and CKAD get you fluent in the API. They don't prepare you for a 3am page caused by a resource limit nobody set, or the tribal knowledge that lives only in a teammate's head." />
+  <meta name="author" content="Sarthak Kulshrestha" />
+
+  <link rel="canonical" href="https://sarthak044.github.io/sarthak-kul/blog/what-certifications-dont-teach-you.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Sarthak Kulshrestha" />
+  <meta property="og:title" content="What Certifications Don't Teach You About Running Kubernetes in Production" />
+  <meta property="og:description" content="Certifications are a floor, not a ceiling. What actually separates exam-room Kubernetes from production Kubernetes." />
+  <meta property="og:image" content="../assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+  <meta property="og:url" content="https://sarthak044.github.io/sarthak-kul/blog/what-certifications-dont-teach-you.html" />
+  <meta property="article:published_time" content="2026-08-27" />
+  <meta property="article:author" content="Sarthak Kulshrestha" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What Certifications Don't Teach You About Running Kubernetes in Production" />
+  <meta name="twitter:description" content="Certifications are a floor, not a ceiling — what production actually demands." />
+  <meta name="twitter:image" content="../assets/img/og-image.png" />
+  <meta name="twitter:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=Share+Tech+Mono&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "What Certifications Don't Teach You About Running Kubernetes in Production",
+    "description": "Certifications are a floor, not a ceiling. What actually separates exam-room Kubernetes from production Kubernetes.",
+    "datePublished": "2026-08-27",
+    "author": { "@type": "Person", "name": "Sarthak Kulshrestha", "url": "https://sarthak044.github.io/sarthak-kul/" },
+    "publisher": { "@type": "Person", "name": "Sarthak Kulshrestha" },
+    "mainEntityOfPage": "https://sarthak044.github.io/sarthak-kul/blog/what-certifications-dont-teach-you.html",
+    "url": "https://sarthak044.github.io/sarthak-kul/blog/what-certifications-dont-teach-you.html"
+  }
+  </script>
+</head>
+<body class="calm">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hud" id="top">
+    <div class="hud-inner">
+      <a class="sigil" href="../index.html" aria-label="Sarthak Kulshrestha — hub">
+        <svg class="sigil-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 7 L16 2 L28 7 L28 21 L16 30 L4 21 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M12 11 H21 M12 11 V16 H20 M12 21 H21 M20 16 V21" fill="none" stroke="currentColor" stroke-width="2.4"/>
+        </svg>
+        <span class="sigil-text">SK<b>//</b>SYS</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hud-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="hud-nav" class="hud-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../experience.html">Experience</a></li>
+          <li><a href="../skills.html">Skills</a></li>
+          <li><a href="../certifications.html">Certs</a></li>
+          <li><a href="../education.html">Education</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../blog.html" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+      <p class="hud-readout" aria-hidden="true"><span class="hud-dot"></span> LINK OK <span class="hud-clock" data-clock>--:--</span></p>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="read">
+      <header class="post-header">
+        <p class="calm-kicker">Field notes</p>
+        <h1>What Certifications Don't Teach You About Running Kubernetes in Production</h1>
+        <p class="post-meta">
+          <time datetime="2026-08-27">August 27, 2026</time>
+          <span class="dot">&middot;</span> 6 min read
+          <span class="dot">&middot;</span> Sarthak Kulshrestha
+          <span class="dot">&middot;</span> <span class="post-meta-cat">Technical</span>
+        </p>
+        <ul class="post-tags">
+          <li>Kubernetes</li>
+          <li>Career</li>
+        </ul>
+      </header>
+
+      <div class="post-body">
+        <p>CKA and CKAD are worth earning. They force you to actually know the API surface — how scheduling works, what a <code>NetworkPolicy</code> does versus what people assume it does, how to debug a pod that won't start under real time pressure. None of that is wasted knowledge. But there's a gap between passing a certification exam and running Kubernetes in production that nobody's syllabus quite covers, and it's worth naming honestly.</p>
+
+        <h2>Multi-tenancy is where the clean mental model breaks first</h2>
+        <p>Exam scenarios are almost always single-tenant: one cluster, one workload, one clear objective. Production clusters are usually shared — multiple teams, wildly different resource profiles, someone's batch job competing with someone else's latency-sensitive service. Understanding <code>requests</code> and <code>limits</code> conceptually is exam material. Tuning them across a shared cluster so that a spiky batch workload doesn't starve a customer-facing service is a different skill entirely, and it's mostly learned by getting it wrong once.</p>
+
+        <h2>The first outage is (almost) never a control-plane bug</h2>
+        <p>New Kubernetes operators tend to expect their first serious incident to be something exotic — an etcd quorum issue, a scheduler bug, something worthy of the complexity of the system. In practice, the first real outage is usually mundane: a memory limit set too conservatively, a liveness probe that's too aggressive, a PVC that quietly filled up. The certifications teach you the vocabulary to describe these problems. They don't teach you the instinct to suspect them first, before reaching for anything more exotic.</p>
+
+        <h2>On-call reality versus calm study</h2>
+        <p>Reading a Grafana dashboard while studying and reading the same dashboard at 3am with a director asking for an ETA are not the same cognitive task. Production competence includes a layer that has nothing to do with Kubernetes internals: staying calm enough to read a dashboard correctly under pressure, knowing which three signals actually matter when everything is red, and resisting the urge to change five things at once. That's trained by experience, not by an exam environment with a two-hour timer and a clearly scoped problem.</p>
+
+        <h2>Institutional knowledge doesn't show up in the docs</h2>
+        <p>Every production cluster accumulates a layer of tribal knowledge: why a particular namespace has a weird annotation, why nobody touches that one Helm chart without pinging a specific person first, which runbook is actually current versus which one is aspirational. None of this is written down anywhere a certification could test it, and a surprising amount of "senior" competence is just having absorbed enough of this institutional context to know where the bodies are buried.</p>
+
+        <h2>Certifications are a floor, not a ceiling</h2>
+        <p>None of this is an argument against certifying — CKA, CKAD, and similar credentials are a legitimate, efficient way to prove baseline fluency, especially early in a career or when moving into a new organization. The mistake is treating the certificate as evidence that the learning is finished. It's evidence that you're ready to start learning the parts that only running real systems, under real constraints, for real people, can teach you.</p>
+
+        <h2>Closing thought</h2>
+        <p>Keep certifying if it helps you learn — it's a good forcing function. Just keep the expectation calibrated: the exam proves you can operate the machine. Production teaches you to operate it responsibly, under pressure, with other people's uptime depending on your judgment. Those are related skills, but they're not the same skill.</p>
+      </div>
+
+      <footer class="post-footer">
+        <nav class="post-nav" aria-label="More posts">
+          <div class="post-nav-prev">
+            <span>Previous</span>
+            <a href="gitops-in-regulated-environments.html">&larr; GitOps in Regulated Environments: What Actually Changes</a>
+          </div>
+        </nav>
+        <a class="back-to-blog" href="../blog.html">&larr; Back to Blog</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="dock">
+    <div class="dock-inner">
+      <p class="dock-copy">&copy; <span data-year>2026</span> Sarthak Kulshrestha &middot; field notes</p>
+      <nav class="dock-links" aria-label="Profiles and résumé">
+        <a href="../assets/sarthak-kulshrestha-resume.pdf" download>Résumé</a>
+        <a href="https://www.linkedin.com/in/sarthak-kul/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/Sarthak044" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://medium.com/@shinobishuuz" target="_blank" rel="noopener noreferrer">Medium</a>
+      </nav>
+      <a class="dock-top" href="#top">&#9650; TOP</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

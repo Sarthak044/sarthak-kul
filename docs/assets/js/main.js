@@ -183,4 +183,109 @@
       setTimeout(tick, 550);
     }
   }
+
+  /* ---------- blog: category filter (progressive enhancement) ----------
+     Runs only on blog.html, where .post-filter + .post-list exist. With JS
+     off, .post-filter is hidden by CSS and every row keeps showing its own
+     category label, so the archive stays fully navigable. */
+  var filterBar = document.querySelector('.post-filter');
+  var postList = document.querySelector('.post-list');
+  if (filterBar && postList) {
+    var rows = Array.prototype.slice.call(postList.querySelectorAll('.post-row'));
+    var statusEl = document.querySelector('.filter-status');
+    var emptyEl = document.querySelector('.post-empty');
+
+    var catOf = function (row) {
+      return (row.getAttribute('data-category') || 'technical').toLowerCase();
+    };
+    var labelize = function (slug) {
+      return slug.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    };
+    var countFor = function (cat) {
+      if (cat === 'all') { return rows.length; }
+      var n = 0;
+      rows.forEach(function (r) { if (catOf(r) === cat) { n++; } });
+      return n;
+    };
+
+    /* A chip for every category actually present — a new category added in
+       front matter "just works" without hand-editing this bar. */
+    rows.forEach(function (row) {
+      var c = catOf(row);
+      if (!filterBar.querySelector('[data-filter="' + c + '"]')) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'filter-chip';
+        b.setAttribute('data-filter', c);
+        b.setAttribute('aria-pressed', 'false');
+        b.textContent = labelize(c);
+        filterBar.appendChild(b);
+      }
+    });
+
+    var chips = Array.prototype.slice.call(filterBar.querySelectorAll('.filter-chip'));
+    var validCats = chips.map(function (c) { return c.getAttribute('data-filter'); });
+
+    chips.forEach(function (chip) {
+      var cat = chip.getAttribute('data-filter');
+      var n = countFor(cat);
+      var baseLabel = (chip.textContent || '').trim();
+      var span = document.createElement('span');
+      span.className = 'chip-count';
+      span.textContent = String(n);
+      span.setAttribute('aria-hidden', 'true');
+      chip.appendChild(document.createTextNode(' '));
+      chip.appendChild(span);
+      chip.setAttribute('aria-label',
+        (cat === 'all' ? 'All posts' : baseLabel + ' category') + ', ' + n + (n === 1 ? ' post' : ' posts'));
+      if (cat !== 'all' && n === 0) { chip.disabled = true; }
+    });
+
+    var apply = function (cat, updateHash) {
+      cat = (cat || 'all').toLowerCase();
+      if (validCats.indexOf(cat) === -1) { cat = 'all'; }
+
+      var shown = 0;
+      rows.forEach(function (row) {
+        var match = cat === 'all' || catOf(row) === cat;
+        row.hidden = !match;
+        if (match) { shown++; }
+      });
+      chips.forEach(function (chip) {
+        chip.setAttribute('aria-pressed', chip.getAttribute('data-filter') === cat ? 'true' : 'false');
+      });
+      if (emptyEl) { emptyEl.hidden = shown !== 0; }
+      if (statusEl) {
+        if (cat === 'all') {
+          statusEl.textContent = 'Showing all ' + shown + ' post' + (shown === 1 ? '' : 's') + '.';
+        } else if (shown === 0) {
+          statusEl.textContent = 'No ' + labelize(cat) + ' posts yet.';
+        } else {
+          statusEl.textContent = 'Showing ' + shown + ' ' + labelize(cat) + ' post' + (shown === 1 ? '' : 's') + '.';
+        }
+      }
+      if (updateHash) {
+        if (cat === 'all') {
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
+          } else {
+            window.location.hash = '';
+          }
+        } else {
+          window.location.hash = cat;
+        }
+      }
+    };
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        apply(chip.getAttribute('data-filter'), true);
+      });
+    });
+    window.addEventListener('hashchange', function () {
+      apply((window.location.hash || '').replace(/^#/, ''), false);
+    });
+
+    apply((window.location.hash || '').replace(/^#/, ''), false);
+  }
 })();

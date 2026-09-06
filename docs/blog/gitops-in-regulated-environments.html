@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#181a1e" />
+
+  <title>GitOps in Regulated Environments: What Actually Changes — Sarthak Kulshrestha</title>
+  <meta name="description" content="GitOps is usually sold on speed. In a regulated environment the real value is somewhere else — a deployment history that survives an audit without a single screenshot." />
+  <meta name="author" content="Sarthak Kulshrestha" />
+
+  <link rel="canonical" href="https://sarthak044.github.io/sarthak-kul/blog/gitops-in-regulated-environments.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Sarthak Kulshrestha" />
+  <meta property="og:title" content="GitOps in Regulated Environments: What Actually Changes" />
+  <meta property="og:description" content="The real value of GitOps in a regulated shop isn't speed — it's a deployment history that survives an audit." />
+  <meta property="og:image" content="../assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+  <meta property="og:url" content="https://sarthak044.github.io/sarthak-kul/blog/gitops-in-regulated-environments.html" />
+  <meta property="article:published_time" content="2026-08-05" />
+  <meta property="article:author" content="Sarthak Kulshrestha" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GitOps in Regulated Environments: What Actually Changes" />
+  <meta name="twitter:description" content="The real value of GitOps in a regulated shop isn't speed — it's an auditable deployment history." />
+  <meta name="twitter:image" content="../assets/img/og-image.png" />
+  <meta name="twitter:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=Share+Tech+Mono&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "GitOps in Regulated Environments: What Actually Changes",
+    "description": "The real value of GitOps in a regulated shop isn't speed — it's a deployment history that survives an audit.",
+    "datePublished": "2026-08-05",
+    "author": { "@type": "Person", "name": "Sarthak Kulshrestha", "url": "https://sarthak044.github.io/sarthak-kul/" },
+    "publisher": { "@type": "Person", "name": "Sarthak Kulshrestha" },
+    "mainEntityOfPage": "https://sarthak044.github.io/sarthak-kul/blog/gitops-in-regulated-environments.html",
+    "url": "https://sarthak044.github.io/sarthak-kul/blog/gitops-in-regulated-environments.html"
+  }
+  </script>
+</head>
+<body class="calm">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hud" id="top">
+    <div class="hud-inner">
+      <a class="sigil" href="../index.html" aria-label="Sarthak Kulshrestha — hub">
+        <svg class="sigil-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 7 L16 2 L28 7 L28 21 L16 30 L4 21 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M12 11 H21 M12 11 V16 H20 M12 21 H21 M20 16 V21" fill="none" stroke="currentColor" stroke-width="2.4"/>
+        </svg>
+        <span class="sigil-text">SK<b>//</b>SYS</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hud-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="hud-nav" class="hud-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../experience.html">Experience</a></li>
+          <li><a href="../skills.html">Skills</a></li>
+          <li><a href="../certifications.html">Certs</a></li>
+          <li><a href="../education.html">Education</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../blog.html" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+      <p class="hud-readout" aria-hidden="true"><span class="hud-dot"></span> LINK OK <span class="hud-clock" data-clock>--:--</span></p>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="read">
+      <header class="post-header">
+        <p class="calm-kicker">Field notes</p>
+        <h1>GitOps in Regulated Environments: What Actually Changes</h1>
+        <p class="post-meta">
+          <time datetime="2026-08-05">August 5, 2026</time>
+          <span class="dot">&middot;</span> 5 min read
+          <span class="dot">&middot;</span> Sarthak Kulshrestha
+          <span class="dot">&middot;</span> <span class="post-meta-cat">Technical</span>
+        </p>
+        <ul class="post-tags">
+          <li>GitOps</li>
+          <li>Compliance</li>
+        </ul>
+      </header>
+
+      <div class="post-body">
+        <p>Most GitOps pitches lead with speed: faster deploys, fewer manual steps, less waiting on a human to click "approve" in a ticketing tool. That pitch is true, and it's also not the reason GitOps matters most in a regulated environment. In government or financial-adjacent infrastructure, the constraint isn't usually deployment speed — it's proving, after the fact, exactly what changed, when, and who signed off on it. That's where ArgoCD and Kustomize earn their keep, and it's a different value proposition than the one most GitOps talks lead with.</p>
+
+        <h2>Git as the system of record</h2>
+        <p>The moment your cluster state is declared in Git rather than assembled through a series of <code>kubectl apply</code> commands and tribal memory, your audit trail stops being "ask the person who did it" and starts being "read the commit history." Every change has an author, a timestamp, and — if you enforce signed commits — cryptographic attestation of who actually made it. That's a meaningfully stronger answer to an auditor than a change-management spreadsheet.</p>
+
+        <h2>Separating "what changed" from "who approved it"</h2>
+        <p>Branch protection rules turn your pull request process into an approval workflow you don't have to build yourself. Require a second reviewer on the manifests repository, and you get segregation-of-duties for free — the person proposing a change and the person approving it are provably different people, which is exactly the kind of control a compliance review is looking for.</p>
+
+        <h2>Drift is a compliance signal, not just an ops nuisance</h2>
+        <p>In a non-GitOps world, configuration drift is mostly an operational headache — the cluster slowly diverges from what anyone documented. In a regulated world, drift is a compliance finding waiting to happen: it means the running state no longer matches the approved, reviewed state. ArgoCD's self-heal and drift-detection turn that into something you can alert on and remediate automatically, rather than discover during the next audit cycle.</p>
+
+        <h2>Secrets still need their own story</h2>
+        <p>GitOps does not mean "put secrets in Git," and treating it that way is the most common way teams undermine the whole model. Whatever your secrets story is — sealed secrets, an external vault synced at deploy time, SOPS-encrypted values — it has to sit alongside the GitOps workflow without breaking the "Git is the source of truth" property. The manifest can declare that a secret exists and where it comes from; it shouldn't declare the secret's value.</p>
+
+        <h2>Rollbacks become boring — which is the point</h2>
+        <p>When "what does good look like" is a Git commit, "roll back" just means pointing at a previous one. No more reconstructing a previous state from memory during an incident, no more asking whether the rollback itself needs its own change ticket. In a regulated environment, boring is a feature: the fewer judgment calls required during an incident, the fewer ways to introduce an undocumented, unapproved change while trying to fix something else.</p>
+
+        <h2>Closing thought</h2>
+        <p>If you're introducing GitOps to a compliance-heavy team, don't lead with velocity — lead with provability. The speed is real, but it's a side effect. The actual argument that lands with auditors and risk teams is that the system can now show its work, every time, without anyone having to reconstruct it after the fact.</p>
+      </div>
+
+      <footer class="post-footer">
+        <nav class="post-nav" aria-label="More posts">
+          <div class="post-nav-prev">
+            <span>Previous</span>
+            <a href="hardening-air-gapped-kubernetes.html">&larr; A Practical Checklist for Hardening Air-Gapped Kubernetes</a>
+          </div>
+          <div class="post-nav-next">
+            <span>Next</span>
+            <a href="what-certifications-dont-teach-you.html">What Certifications Don't Teach You About Running Kubernetes in Production &rarr;</a>
+          </div>
+        </nav>
+        <a class="back-to-blog" href="../blog.html">&larr; Back to Blog</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="dock">
+    <div class="dock-inner">
+      <p class="dock-copy">&copy; <span data-year>2026</span> Sarthak Kulshrestha &middot; field notes</p>
+      <nav class="dock-links" aria-label="Profiles and résumé">
+        <a href="../assets/sarthak-kulshrestha-resume.pdf" download>Résumé</a>
+        <a href="https://www.linkedin.com/in/sarthak-kul/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/Sarthak044" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://medium.com/@shinobishuuz" target="_blank" rel="noopener noreferrer">Medium</a>
+      </nav>
+      <a class="dock-top" href="#top">&#9650; TOP</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
