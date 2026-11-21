@@ -262,7 +262,7 @@ POST_TEMPLATE = Template("""<!DOCTYPE html>
   <meta property="og:image" content="../assets/img/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+  <meta property="og:image:alt" content="Sarthak Kulshrestha — Lead Security Engineer, Cloud Security" />
   <meta property="og:url" content="$canonical" />
   <meta property="article:published_time" content="$date_iso" />
   <meta property="article:author" content="Sarthak Kulshrestha" />
@@ -270,7 +270,7 @@ POST_TEMPLATE = Template("""<!DOCTYPE html>
   <meta name="twitter:title" content="$title" />
   <meta name="twitter:description" content="$description" />
   <meta name="twitter:image" content="../assets/img/og-image.png" />
-  <meta name="twitter:image:alt" content="Sarthak Kulshrestha — Senior DevSecOps Engineer" />
+  <meta name="twitter:image:alt" content="Sarthak Kulshrestha — Lead Security Engineer, Cloud Security" />
 
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../assets/img/favicon.svg" />
